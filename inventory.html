@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Inventory Management - Union Clinic</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="dashboard.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="dashboard-container">
+	<!-- Sidebar Navigation -->
+	<aside class="dashboard-sidebar">
+		<div class="sidebar-header">
+			<h2>Union Clinic</h2>
+			<p>Admin Panel</p>
+		</div>
+		<div class="user-info">
+			<div class="user-avatar">
+				<i class="fas fa-user-circle"></i>
+			</div>
+			<div class="user-details">
+				<h3 id="username">Caricamento...</h3>
+				<p id="user-role">Amministratore</p>
+			</div>
+		</div>
+		<nav class="sidebar-nav">
+			<ul>
+				<li class="nav-item">
+					<a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+				</li>
+				<li class="nav-item">
+					<a href="admin-dashboard.html#reports-section"><i class="fas fa-file-medical"></i> Gestione Report</a>
+				</li>
+				<li class="nav-item">
+					<a href="admin-dashboard.html#staff-section"><i class="fas fa-user-md"></i> Gestione Staff</a>
+				</li>
+				<li class="nav-item active">
+					<a href="inventory.html"><i class="fas fa-boxes"></i> Inventario</a>
+				</li>
+				<li class="nav-item">
+					<a href="admin-dashboard.html#profile-section"><i class="fas fa-user-cog"></i> Profilo</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="sidebar-footer">
+			<button id="logout-btn" class="logout-btn">
+				<i class="fas fa-sign-out-alt"></i> Logout
+			</button>
+		</div>
+	</aside>
+	<!-- Main Inventory Content -->
+	<main class="dashboard-content">
+		<section id="inventory-section" class="content-section active">
+			<div class="section-header">
+				<h1>Gestione Inventario</h1>
+				<p>Gestisci prodotti, implanti e consumabili</p>
+			</div>
+			<!-- Inventory Stats Cards -->
+			<div class="stats-cards">
+				<div class="stat-card">
+					<div class="stat-icon">
+						<i class="fas fa-boxes"></i>
+					</div>
+					<div class="stat-info">
+						<h3>Prodotti Totali</h3>
+						<p id="total-products">0</p>
+					</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-icon" style="background-color: rgba(193, 39, 45, 0.2);">
+						<i class="fas fa-exclamation-triangle" style="color: var(--accent-red);"></i>
+					</div>
+					<div class="stat-info">
+						<h3>Scorte Basse</h3>
+						<p id="low-stock-count">0</p>
+					</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-icon" style="background-color: rgba(56, 176, 0, 0.2);">
+						<i class="fas fa-euro-sign" style="color: var(--accent-color);"></i>
+					</div>
+					<div class="stat-info">
+						<h3>Valore Totale</h3>
+						<p id="total-value">0 €</p>
+					</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-icon" style="background-color: rgba(255, 221, 0, 0.2);">
+						<i class="fas fa-tag" style="color: var(--accent-yellow);"></i>
+					</div>
+					<div class="stat-info">
+						<h3>Categorie</h3>
+						<p id="categories-count">0</p>
+					</div>
+				</div>
+			</div>
+			<!-- Inventory Management Tabs -->
+			<div class="tabs-container">
+				<div class="tab-header">
+					<button class="tab-button active" data-tab="tab-items">Prodotti</button>
+					<button class="tab-button" data-tab="tab-transactions">Movimenti</button>
+					<button class="tab-button" data-tab="tab-categories">Categorie</button>
+				</div>
+				<!-- Products Tab -->
+				<div class="tab-content active" id="tab-items">
+					<div class="panel-header">
+						<h2>Gestione Prodotti</h2>
+						<button id="new-item-btn" class="action-btn">
+							<i class="fas fa-plus"></i> Nuovo Prodotto
+						</button>
+					</div>
+					<div class="filters-bar">
+						<div class="search-box">
+							<input type="text" id="item-search" placeholder="Cerca prodotto per nome o codice..."> <i class="fas fa-search"></i>
+						</div>
+						<div class="filter-controls">
+							<select id="category-filter">
+								<option value="">Tutte le categorie</option>
+								<!-- Categories will be populated via JavaScript -->
+							</select> <select id="stock-filter">
+							<option value="">Tutti i prodotti</option>
+							<option value="low">Scorte basse</option>
+							<option value="out">Esauriti</option>
+						</select>
+							<button type="button" id="apply-filters" class="search-btn">Applica</button>
+						</div>
+					</div>
+					<div class="data-table-container">
+						<table class="data-table" id="items-table">
+							<thead>
+							<tr>
+								<th>Codice</th>
+								<th>Nome</th>
+								<th>Categoria</th>
+								<th>Giacenza</th>
+								<th>Min. Scorta</th>
+								<th>Prezzo</th>
+								<th>Valore</th>
+								<th>Azioni</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td colspan="8" class="loading-cell">Caricamento prodotti...</td>
+							</tr>
+							<!-- Items will be populated via JavaScript -->
+							</tbody>
+						</table>
+					</div>
+					<div class="pagination">
+						<button id="items-prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+						<span id="items-page-info">Pagina 1 di 1</span>
+						<button id="items-next-page" disabled><i class="fas fa-chevron-right"></i></button>
+					</div>
+				</div>
+				<!-- Transactions Tab -->
+				<div class="tab-content" id="tab-transactions">
+					<div class="panel-header">
+						<h2>Movimenti Inventario</h2>
+						<button id="new-transaction-btn" class="action-btn">
+							<i class="fas fa-plus"></i> Nuovo Movimento
+						</button>
+					</div>
+					<div class="filters-bar">
+						<div class="search-box">
+							<input type="text" id="transaction-product-search" placeholder="Cerca per prodotto..."> <i class="fas fa-search"></i>
+						</div>
+						<div class="filter-controls">
+							<select id="transaction-type-filter">
+								<option value="">Tutti i movimenti</option>
+								<option value="in">Entrate</option>
+								<option value="out">Uscite</option>
+								<option value="adjustment">Aggiustamenti</option>
+							</select> <input type="date" id="transaction-date" class="date-filter">
+							<button type="button" id="apply-transaction-filters" class="search-btn">Applica</button>
+						</div>
+					</div>
+					<div class="data-table-container">
+						<table class="data-table" id="transactions-table">
+							<thead>
+							<tr>
+								<th>Data</th>
+								<th>Prodotto</th>
+								<th>Tipo</th>
+								<th>Quantità</th>
+								<th>Scorta Prec.</th>
+								<th>Nuova Scorta</th>
+								<th>Operatore</th>
+								<th>Note</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td colspan="8" class="loading-cell">Caricamento movimenti...</td>
+							</tr>
+							<!-- Transactions will be populated via JavaScript -->
+							</tbody>
+						</table>
+					</div>
+					<div class="pagination">
+						<button id="transactions-prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+						<span id="transactions-page-info">Pagina 1 di 1</span>
+						<button id="transactions-next-page" disabled><i class="fas fa-chevron-right"></i></button>
+					</div>
+				</div>
+				<!-- Categories Tab -->
+				<div class="tab-content" id="tab-categories">
+					<div class="panel-header">
+						<h2>Gestione Categorie</h2>
+						<button id="new-category-btn" class="action-btn">
+							<i class="fas fa-plus"></i> Nuova Categoria
+						</button>
+					</div>
+					<div class="data-table-container">
+						<table class="data-table" id="categories-table">
+							<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nome</th>
+								<th>Descrizione</th>
+								<th>N. Prodotti</th>
+								<th>Azioni</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td colspan="5" class="loading-cell">Caricamento categorie...</td>
+							</tr>
+							<!-- Categories will be populated via JavaScript -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</div>
+<!-- Item Modal -->
+<div id="item-modal" class="modal">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h2 id="item-modal-title">Nuovo Prodotto</h2>
+			<button class="close-modal">&times;</button>
+		</div>
+		<div class="modal-body">
+			<form id="item-form">
+				<input type="hidden" id="item-id" name="id">
+				<div class="form-row">
+					<div class="form-group">
+						<label for="item-code">Codice Prodotto*</label> <input type="text" id="item-code" name="code" required>
+					</div>
+					<div class="form-group">
+						<label for="item-name">Nome Prodotto*</label> <input type="text" id="item-name" name="name" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="item-category">Categoria*</label> <select id="item-category" name="category_id" required>
+						<option value="">Seleziona Categoria</option>
+						<!-- Categories will be populated via JavaScript -->
+					</select>
+					</div>
+					<div class="form-group">
+						<label for="item-unit">Unità di Misura*</label> <select id="item-unit" name="unit" required>
+						<option value="piece">Pezzo</option>
+						<option value="box">Scatola</option>
+						<option value="set">Set</option>
+						<option value="vial">Fiala</option>
+						<option value="syringe">Siringa</option>
+						<option value="pack">Confezione</option>
+					</select>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="item-price">Prezzo Unitario (€)*</label> <input type="number" id="item-price" name="unit_price" step="0.01" min="0" required>
+					</div>
+					<div class="form-group">
+						<label for="item-stock">Giacenza Attuale*</label> <input type="number" id="item-stock" name="current_stock" min="0" required>
+					</div>
+					<div class="form-group">
+						<label for="item-min-stock">Scorta Minima*</label> <input type="number" id="item-min-stock" name="min_stock" min="0" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="item-manufacturer">Produttore</label> <input type="text" id="item-manufacturer" name="manufacturer">
+					</div>
+					<div class="form-group">
+						<label for="item-supplier">Fornitore</label> <input type="text" id="item-supplier" name="supplier">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="item-location">Ubicazione</label> <input type="text" id="item-location" name="location" placeholder="Es: Armadio A1">
+					</div>
+					<div class="form-group">
+						<label for="item-status">Stato</label> <select id="item-status" name="is_active">
+						<option value="true">Attivo</option>
+						<option value="false">Inattivo</option>
+					</select>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group" style="flex: 1;">
+						<label for="item-description">Descrizione</label> <textarea id="item-description" name="description" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="button" class="secondary-btn close-modal-btn">Annulla</button>
+					<button type="submit" class="primary-btn">Salva</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Category Modal -->
+<div id="category-modal" class="modal">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h2 id="category-modal-title">Nuova Categoria</h2>
+			<button class="close-modal">&times;</button>
+		</div>
+		<div class="modal-body">
+			<form id="category-form">
+				<input type="hidden" id="category-id" name="id">
+				<div class="form-row">
+					<div class="form-group">
+						<label for="category-name">Nome Categoria*</label> <input type="text" id="category-name" name="name" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group" style="flex: 1;">
+						<label for="category-description">Descrizione</label> <textarea id="category-description" name="description" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="button" class="secondary-btn close-modal-btn">Annulla</button>
+					<button type="submit" class="primary-btn">Salva</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Transaction Modal -->
+<div id="transaction-modal" class="modal">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h2 id="transaction-modal-title">Nuovo Movimento</h2>
+			<button class="close-modal">&times;</button>
+		</div>
+		<div class="modal-body">
+			<form id="transaction-form">
+				<div class="form-row">
+					<div class="form-group">
+						<label for="transaction-item">Prodotto*</label> <select id="transaction-item" name="item_id" required>
+						<option value="">Seleziona Prodotto</option>
+						<!-- Items will be populated via JavaScript -->
+					</select>
+					</div>
+					<div class="form-group">
+						<label for="transaction-type">Tipo Movimento*</label> <select id="transaction-type" name="transaction_type" required>
+						<option value="in">Entrata</option>
+						<option value="out">Uscita</option>
+					</select>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="transaction-quantity">Quantità*</label> <input type="number" id="transaction-quantity" name="quantity" min="1" required>
+					</div>
+					<div class="form-group">
+						<label for="transaction-reference">Riferimento</label> <input type="text" id="transaction-reference" name="reference_id" placeholder="Es: ID Paziente o Ordine">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group" style="flex: 1;">
+						<label for="transaction-notes">Note</label> <textarea id="transaction-notes" name="notes" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="button" class="secondary-btn close-modal-btn">Annulla</button>
+					<button type="submit" class="primary-btn">Salva</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Confirmation Modal -->
+<div id="confirm-modal" class="modal">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h2 id="confirm-title">Conferma</h2>
+			<button class="close-modal">&times;</button>
+		</div>
+		<div class="modal-body">
+			<p id="confirm-message">Sei sicuro di voler procedere con questa azione?</p>
+			<div class="form-actions">
+				<button class="secondary-btn close-modal-btn">Annulla</button>
+				<button id="confirm-action-btn" class="danger-btn">Conferma</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="dashboard-common.js"></script>
+<script src="inventory.js"></script>
+</body>
+</html>

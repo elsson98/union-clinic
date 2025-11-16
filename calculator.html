@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Calcola Preventivo - Union Clinic</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<script src="includes.js"></script>
+</head>
+<body>
+<!-- Header will be included here -->
+<div id="header-include"></div>
+<div class="page-banner">
+	<div class="banner-content">
+		<h1>Calcola il tuo Preventivo</h1>
+		<p>Stima i costi dei trattamenti in pochi semplici passi</p>
+	</div>
+</div>
+<section class="calculator-section">
+	<div class="container">
+		<div class="calculator-intro">
+			<h2 class="section-title">Risparmia sui Trattamenti Dentali</h2>
+			<p class="lead-text">Il nostro calcolatore ti permette di stimare il costo dei trattamenti di cui hai bisogno. Seleziona i servizi che ti interessano e ottieni subito un preventivo indicativo.</p>
+			<p class="disclaimer-text">Nota: questo è un preventivo indicativo. Per un preventivo preciso, è necessaria una visita in clinica o una consulenza online con uno dei nostri specialisti.</p>
+		</div>
+		<div class="calculator-container">
+			<div class="price-calculator">
+				<h3>Seleziona i Servizi</h3>
+				<div class="service-selector">
+					<select id="service-dropdown">
+						<option value="" disabled selected>Seleziona un servizio</option>
+						<option value="pulizia">Pulizia del tartaro - 25€</option>
+						<option value="sbiancamento">Sbiancamento professionale - 150€</option>
+						<option value="otturazione1">Otturazione grado 1 - 30€</option>
+						<option value="otturazione2">Otturazione grado 2 - 40€</option>
+						<option value="otturazione3">Otturazione grado 3 - 70€</option>
+						<option value="coronaZ">Corona in zirconio - 150€</option>
+						<option value="coronaMP">Corona in metallo-porcellana - 100€</option>
+						<option value="faccetteC">Faccette in composito - 80€</option>
+						<option value="faccetteE">Faccette EMax - 200€</option>
+						<option value="impianti">Impianti - 300€</option>
+						<option value="rialzo">Rialzo del seno mascellare (Sinus Lift) - 400€</option>
+						<option value="mascherina">Mascherina ortodontica - 1200€</option>
+						<option value="ortodonzia">Trattamento ortodontico - 1500€</option>
+						<option value="innesto">Innesto osseo - 250€</option>
+						<option value="estrazione">Estrazione denti 18, 28, 38, 48 - 100€</option>
+						<option value="trapianto-dhi">Trapianto capelli DHI - 1800€</option>
+						<option value="trapianto-fue">Trapianto capelli FUE - 1500€</option>
+						<option value="prp">PRP - 100€</option>
+					</select>
+					<button onclick="addService()" class="cta-button add-service-button">Aggiungi Servizio</button>
+				</div>
+				<div class="calculator-divider"></div>
+				<div class="selected-services" id="selected-services">
+					<h4>Servizi Selezionati:</h4>
+					<div id="services-list">
+						<p>Nessun servizio selezionato</p>
+					</div>
+				</div>
+				<div class="calculator-divider"></div>
+				<div class="total-price" id="total-price">
+					Totale: 0€
+				</div>
+				<div class="quantity-selectors" id="quantity-selectors">
+					<!-- Quantity selectors will be generated via JavaScript -->
+				</div>
+				<div class="calculator-buttons">
+					<button onclick="clearAll()" class="secondary-button">Cancella Tutto</button>
+					<button onclick="saveEstimate()" class="cta-button">Salva Preventivo</button>
+				</div>
+			</div>
+			<div class="calculator-info">
+				<div class="info-box">
+					<h3><i class="fas fa-info-circle"></i> Come Funziona il Preventivo</h3>
+					<ol class="info-list">
+						<li>Seleziona i servizi di cui hai bisogno dal menu a tendina</li>
+						<li>Clicca su "Aggiungi Servizio" per aggiungerlo al preventivo</li>
+						<li>Modifica le quantità se necessario</li>
+						<li>Il totale verrà calcolato automaticamente</li>
+						<li>Puoi salvare o stampare il preventivo per riferimento futuro</li>
+					</ol>
+					<p>Per un preventivo più preciso, ti consigliamo di contattarci per una consulenza con uno dei nostri specialisti.</p>
+				</div>
+				<div class="italy-comparison">
+					<h3><i class="fas fa-euro-sign"></i> Confronto con i Prezzi in Italia</h3>
+					<p>I nostri prezzi sono in media il 60-70% più bassi rispetto ai prezzi in Italia per gli stessi trattamenti di alta qualità.</p>
+					<div class="comparison-table">
+						<table>
+							<thead>
+							<tr>
+								<th>Servizio</th>
+								<th>Italia (media)</th>
+								<th>Union Clinic</th>
+								<th>Risparmio</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td>Impianto dentale</td>
+								<td>1.000€</td>
+								<td>300€</td>
+								<td>70%</td>
+							</tr>
+							<tr>
+								<td>Corona in zirconio</td>
+								<td>500€</td>
+								<td>150€</td>
+								<td>70%</td>
+							</tr>
+							<tr>
+								<td>Sbiancamento</td>
+								<td>400€</td>
+								<td>150€</td>
+								<td>62%</td>
+							</tr>
+							<tr>
+								<td>Otturazione</td>
+								<td>120€</td>
+								<td>30-70€</td>
+								<td>42-75%</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="info-box">
+					<h3><i class="fas fa-question-circle"></i> Hai Domande?</h3>
+					<p>Il nostro team è disponibile per rispondere a qualsiasi domanda tu possa avere sui nostri servizi o sul preventivo.</p>
+					<div class="contact-buttons">
+						<a href="contact.html" class="cta-button">Contattaci</a> <a href="tel:+35544514641" class="secondary-button">Chiama Ora</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="estimate-result" class="estimate-result">
+			<h3>Il tuo Preventivo</h3>
+			<div id="estimate-content" class="estimate-content">
+				<!-- Content will be generated via JavaScript -->
+			</div>
+			<div class="estimate-buttons">
+				<button onclick="printEstimate()" class="secondary-button print-button"><i class="fas fa-print"></i> Stampa</button>
+				<button onclick="emailEstimate()" class="cta-button email-button"><i class="fas fa-envelope"></i> Invia via Email</button>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="cta-section">
+	<div class="container">
+		<div class="cta-content">
+			<h2>Prenota una Consulenza Gratuita</h2>
+			<p>Per un preventivo personalizzato e preciso, prenota una consulenza con uno dei nostri specialisti.</p>
+			<div class="cta-buttons">
+				<a href="contact.html" class="cta-button">Richiedi Consulenza</a> <a href="tel:+35544514641" class="secondary-button">Chiama Ora</a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Footer will be included here -->
+<div id="footer-include"></div>
+<script src="script.js"></script>
+</body>
+</html>

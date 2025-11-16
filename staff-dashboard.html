@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Staff Dashboard - Union Clinic</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="dashboard.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="dashboard-container">
+	<!-- Sidebar Navigation -->
+	<aside class="dashboard-sidebar">
+		<div class="sidebar-header">
+			<h2>Union Clinic</h2>
+			<p>Staff Panel</p>
+		</div>
+		<div class="user-info">
+			<div class="user-avatar">
+				<i class="fas fa-user-circle"></i>
+			</div>
+			<div class="user-details">
+				<h3 id="username">Caricamento...</h3>
+				<p id="user-role">Staff</p>
+			</div>
+		</div>
+		<nav class="sidebar-nav">
+			<ul>
+				<li class="nav-item active" data-target="dashboard-section">
+					<a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+				</li>
+				<li class="nav-item" data-target="reports-section">
+					<a href="#"><i class="fas fa-file-medical"></i> Gestione Report</a>
+				</li>
+				<li class="nav-item" data-target="profile-section">
+					<a href="#"><i class="fas fa-user-cog"></i> Profilo</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="sidebar-footer">
+			<button id="logout-btn" class="logout-btn">
+				<i class="fas fa-sign-out-alt"></i> Logout
+			</button>
+		</div>
+	</aside>
+	<!-- Main Dashboard Content -->
+	<main class="dashboard-content">
+		<!-- Dashboard Overview Section -->
+		<section id="dashboard-section" class="content-section active">
+			<div class="section-header">
+				<h1>Staff Dashboard</h1>
+				<p>Benvenuto nell'area staff di Union Clinic</p>
+			</div>
+			<div class="stats-cards">
+				<div class="stat-card">
+					<div class="stat-icon">
+						<i class="fas fa-file-medical"></i>
+					</div>
+					<div class="stat-info">
+						<h3>Report Totali</h3>
+						<p id="total-reports">0</p>
+					</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-icon">
+						<i class="fas fa-users"></i>
+					</div>
+					<div class="stat-info">
+						<h3>Pazienti</h3>
+						<p id="total-patients">0</p>
+					</div>
+				</div>
+			</div>
+			<div class="recent-activity">
+				<div class="section-header">
+					<h2>Attività Recenti</h2>
+				</div>
+				<div class="activity-list" id="recent-activities">
+					<div class="loading">Caricamento attività...</div>
+				</div>
+			</div>
+		</section>
+		<!-- Reports Management Section -->
+		<section id="reports-section" class="content-section">
+			<div class="section-header">
+				<h1>Gestione Report</h1>
+				<a href="index.html" class="action-btn"> <i class="fas fa-plus"></i> Nuovo Report </a>
+			</div>
+			<div class="filters-bar">
+				<div class="search-box">
+					<input type="text" id="report-search" placeholder="Cerca per nome o ID paziente..."> <i class="fas fa-search"></i>
+					<button type="button" id="search-button" class="search-btn">Cerca</button>
+				</div>
+				<div class="filter-controls">
+					<!-- The date picker will be added by JavaScript -->
+				</div>
+			</div>
+			<div class="data-table-container">
+				<table class="data-table" id="reports-table">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>Paziente</th>
+						<th>ID Paziente</th>
+						<th>Data</th>
+						<th>Stato</th>
+						<th>Azioni</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td colspan="6" class="loading-cell">Caricamento dati...</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="pagination">
+				<button id="prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+				<span id="page-info">Pagina 1 di 1</span>
+				<button id="next-page" disabled><i class="fas fa-chevron-right"></i></button>
+			</div>
+		</section>
+		<!-- User Profile Section -->
+		<section id="profile-section" class="content-section">
+			<div class="section-header">
+				<h1>Il Tuo Profilo</h1>
+			</div>
+			<div class="profile-container">
+				<div class="profile-info">
+					<div class="profile-avatar">
+						<i class="fas fa-user-circle"></i>
+					</div>
+					<div class="profile-details">
+						<h2 id="profile-name">Nome Utente</h2>
+						<p id="profile-role">Ruolo</p>
+						<p id="profile-email">email@example.com</p>
+					</div>
+				</div>
+				<div class="profile-form-container">
+					<h3>Informazioni Personali</h3>
+					<form id="profile-form">
+						<div class="form-row">
+							<div class="form-group">
+								<label for="profile-firstname">Nome</label> <input type="text" id="profile-firstname" name="first_name">
+							</div>
+							<div class="form-group">
+								<label for="profile-lastname">Cognome</label> <input type="text" id="profile-lastname" name="last_name">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="profile-email-input">Email</label> <input type="email" id="profile-email-input" name="email">
+							</div>
+							<div class="form-group">
+								<label for="profile-phone">Telefono</label> <input type="tel" id="profile-phone" name="phone_number">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="profile-specialization">Specializzazione</label> <input type="text" id="profile-specialization" name="specialization">
+							</div>
+							<div class="form-group">
+								<label for="profile-license">Numero Licenza</label> <input type="text" id="profile-license" name="license_number">
+							</div>
+						</div>
+						<div class="form-actions">
+							<button type="submit" class="primary-btn">Salva Modifiche</button>
+						</div>
+					</form>
+					<h3>Cambia Password</h3>
+					<form id="password-form">
+						<div class="form-row">
+							<div class="form-group">
+								<label for="current-password">Password Attuale</label> <input type="password" id="current-password" name="current_password">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="new-password">Nuova Password</label> <input type="password" id="new-password" name="new_password">
+							</div>
+							<div class="form-group">
+								<label for="confirm-password">Conferma Password</label> <input type="password" id="confirm-password" name="confirm_password">
+							</div>
+						</div>
+						<div class="form-actions">
+							<button type="submit" class="primary-btn">Aggiorna Password</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+</div>
+<!-- Confirmation Modal -->
+<div id="confirm-modal" class="modal">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h2 id="confirm-title">Conferma</h2>
+			<button class="close-modal">&times;</button>
+		</div>
+		<div class="modal-body">
+			<p id="confirm-message">Sei sicuro di voler procedere con questa azione?</p>
+			<div class="form-actions">
+				<button class="secondary-btn close-modal-btn">Annulla</button>
+				<button id="confirm-action-btn" class="danger-btn">Conferma</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="dashboard-common.js"></script>
+<script src="staff-dashboard.js"></script>
+</body>
+</html>
