@@ -1,6 +1,246 @@
-/* Dynamic Variables with Logo Colors */
+/* ===== ADD THESE STYLES TO YOUR EXISTING styles.css FILE ===== */
+/* Replace the existing .logo and .navbar sections with these: */
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--card-bg);
+    box-shadow: var(--box-shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+/* Logo Styles with Image - 2 Column Layout (HORIZONTAL) */
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    display: flex !important;
+    flex-direction: row !important;  /* Force horizontal layout */
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    overflow: visible;
+    transition: all 0.3s ease;
+}
+
+.logo-image {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    display: block;
+}
+
+.logo a:hover .logo-image {
+    transform: scale(1.05);
+}
+
+.logo-subtitle {
+    display: block;
+    font-size: 0.7rem;
+    color: #666;
+    line-height: 1.4;
+    font-weight: 500;
+    max-width: 120px;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+/* Footer Logo */
+.footer-logo {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Dashboard Sidebar Logo */
+.sidebar-header img {
+    display: block;
+    margin: 0 auto 10px;
+    height: 50px;
+    width: auto;
+}
+
+.sidebar-header .sidebar-subtitle {
+    font-size: 0.7rem;
+    color: #666;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 140px;
+    margin: 0 auto 10px;
+    word-wrap: break-word;
+}
+
+/* Responsive logo adjustments */
+@media (max-width: 768px) {
+    .logo-image {
+        height: 45px;
+    }
+
+    .logo-subtitle {
+        font-size: 0.65rem;
+        max-width: 100px;
+        line-height: 1.3;
+    }
+
+    .navbar {
+        padding: 12px 15px;
+    }
+
+    .footer-logo img {
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-image {
+        height: 40px;
+    }
+
+    .logo-subtitle {
+        font-size: 0.6rem;
+        max-width: 90px;
+        line-height: 1.3;
+    }
+
+    .logo a {
+        gap: 10px;
+    }
+
+    .footer-logo img {
+        height: 40px;
+    }
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--card-bg);
+    box-shadow: var(--box-shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+/* Logo Styles with Image - 2 Column Layout */
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.logo-image {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.logo a:hover .logo-image {
+    transform: scale(1.05);
+}
+
+.logo-subtitle {
+    display: block;
+    font-size: 0.7rem;
+    color: #666;
+    line-height: 1.4;
+    font-weight: 500;
+    max-width: 120px;
+    word-wrap: break-word;
+}
+
+/* Footer Logo */
+.footer-logo {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Dashboard Sidebar Logo */
+.sidebar-header img {
+    display: block;
+    margin: 0 auto 10px;
+    height: 50px;
+    width: auto;
+}
+
+.sidebar-header .sidebar-subtitle {
+    font-size: 0.7rem;
+    color: #666;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 140px;
+    margin: 0 auto 10px;
+    word-wrap: break-word;
+}
+
+/* Responsive logo adjustments */
+@media (max-width: 768px) {
+    .logo-image {
+        height: 45px;
+    }
+
+    .logo-subtitle {
+        font-size: 0.65rem;
+        max-width: 100px;
+        line-height: 1.3;
+    }
+
+    .navbar {
+        padding: 12px 15px;
+    }
+
+    .footer-logo img {
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-image {
+        height: 40px;
+    }
+
+    .logo-subtitle {
+        font-size: 0.6rem;
+        max-width: 90px;
+        line-height: 1.3;
+    }
+
+    .logo a {
+        gap: 10px;
+    }
+
+    .footer-logo img {
+        height: 40px;
+    }
+}
 :root {
-    /* Enhanced color palette based on the Union Clinic logo */
+    /* Enhanced color palette based on the United Clinic logo */
     --primary-color: #4cc9f0; /* Blue from logo */
     --secondary-color: #3a86ff; /* Darker blue */
     --accent-color: #38b000; /* Green from logo */

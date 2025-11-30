@@ -1,5 +1,5 @@
 /**
- * Union Clinic - Main JavaScript File
+ * United Clinic - Main JavaScript File
  * Contains all functionality for the website
  */
 
@@ -484,7 +484,7 @@ function saveEstimate() {
     // Generate estimate content
     let html = `
         <div class="estimate-header">
-            <h4>Union Clinic - Preventivo</h4>
+            <h4>United Clinic - Preventivo</h4>
             <p>Data: ${new Date().toLocaleDateString()}</p>
         </div>
         <table class="estimate-table">
@@ -543,7 +543,7 @@ function printEstimate() {
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Preventivo - Union Clinic</title>
+            <title>Preventivo - United Clinic</title>
             <style>
                 body { font-family: Arial, sans-serif; margin: 20px; }
                 .estimate-header { text-align: center; margin-bottom: 20px; }
