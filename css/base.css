@@ -1,0 +1,85 @@
+:root {
+    /* Enhanced color palette based on the United Clinic logo */
+    --primary-color: #4cc9f0; /* Blue from logo */
+    --secondary-color: #3a86ff; /* Darker blue */
+    --accent-color: #38b000; /* Green from logo */
+    --accent-yellow: #ffdd00; /* Yellow from logo */
+    --accent-red: #c1272d; /* Red from logo */
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --light-text: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+
+    /* Dynamic gradients using logo colors */
+    --primary-gradient: linear-gradient(135deg, #4cc9f0, #3a86ff);
+    --accent-gradient: linear-gradient(135deg, #38b000, #4cc9f0);
+    --yellow-gradient: linear-gradient(135deg, #ffdd00, #ffc107);
+    --red-gradient: linear-gradient(135deg, #c1272d, #e63946);
+    --green-gradient: linear-gradient(135deg, #38b000, #57cc99);
+    --element-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+section {
+    padding: 80px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    position: relative;
+    color: var(--primary-color);
+    width: 100%;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--primary-gradient);
+    border-radius: 2px;
+}

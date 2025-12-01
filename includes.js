@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+    ensureFavicon();
+
     // Load header
     fetch('header.html')
         .then(response => response.text())
@@ -6,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('header-include').innerHTML = data;
             setupMobileMenu();
             setActiveNavItem();
+            setupHideNavOnScroll();
         })
         .catch(error => console.error('Error loading header:', error));
 
@@ -17,6 +20,17 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error loading footer:', error));
 });
+
+// Ensure favicon is set to our icon for all pages
+function ensureFavicon() {
+    document.querySelectorAll('link[rel="icon"]').forEach(link => link.remove());
+
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/svg+xml';
+    link.href = 'favicon.svg';
+    document.head.appendChild(link);
+}
 
 // Set active navigation item based on current page
 function setActiveNavItem() {
@@ -80,4 +94,51 @@ function setupMobileMenu() {
             });
         });
     }
+}
+
+// Hide navbar on scroll down (mobile only)
+function setupHideNavOnScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
+    let lastScroll = window.scrollY;
+    let ticking = false;
+
+    const update = () => {
+        const current = window.scrollY;
+        const isMobile = window.innerWidth <= 768;
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (!isMobile) {
+            navbar.classList.remove('hide');
+            lastScroll = current;
+            ticking = false;
+            return;
+        }
+
+        // Collapse open mobile menu when user starts scrolling
+        if (navMenu?.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            hamburger?.classList.remove('active');
+        }
+
+        if (current > lastScroll + 5 && current > 80) {
+            navbar.classList.add('hide');
+        } else {
+            navbar.classList.remove('hide');
+        }
+
+        lastScroll = current;
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    });
+
+    window.addEventListener('resize', update);
 }

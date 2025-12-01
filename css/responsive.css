@@ -1,0 +1,458 @@
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--card-bg);
+        width: 100%;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        gap: 15px;
+        z-index: 99;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .dropdown-content {
+        position: static;
+        display: none;
+        box-shadow: none;
+        min-width: auto;
+        padding: 10px 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content a {
+        padding: 8px 16px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero h1, .page-banner h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content,
+    .contact-container,
+    .service-content,
+    .intro-content {
+        justify-content: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-row .form-group {
+        flex: 1 1 100%;
+    }
+
+    .statistics-container,
+    .process-steps {
+        gap: 20px;
+    }
+
+    .statistic-box,
+    .process-step {
+        flex: 1 1 calc(50% - 20px);
+    }
+
+    .testimonial-card {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-card,
+    .statistic-box,
+    .process-step {
+        flex: 1 1 100%;
+    }
+
+    .hero h1, .page-banner h1 {
+        font-size: 2rem;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-column {
+        margin-bottom: 30px;
+    }
+
+    .footer-nav-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .value-cards {
+        gap: 15px;
+    }
+
+    .value-card {
+        padding: 20px 15px;
+    }
+
+    .value-card i {
+        font-size: 2rem;
+    }
+
+    .testimonial-card {
+        padding: 30px 20px;
+    }
+
+    .cta-content {
+        padding: 30px 20px;
+    }
+
+    .cta-section h2 {
+        font-size: 2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-buttons .cta-button,
+    .cta-buttons .secondary-button {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .calculator-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .calculator-buttons .cta-button,
+    .calculator-buttons .secondary-button {
+        width: 100%;
+    }
+
+    .faq-buttons {
+        flex-direction: column;
+    }
+
+    .faq-buttons .cta-button,
+    .faq-buttons .secondary-button {
+        width: 100%;
+    }
+
+    .value-card,
+    .feature-card,
+    .statistic-box,
+    .process-step {
+        flex: 1 1 100%;
+    }
+
+    .testimonial-card {
+        padding: 25px 15px;
+    }
+
+    .testimonial-quote {
+        font-size: 2.5rem;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+}
+/* ===== MOBILE FIXES - ADD TO BOTTOM OF styles.css ===== */
+
+/* LOGO MOBILE FIXES - Increase sizes for better visibility */
+@media (max-width: 768px) {
+    .logo-image {
+        height: 64px; /* Slightly larger for clarity */
+    }
+
+    .logo-subtitle {
+        font-size: 0.8rem;
+        max-width: 140px;
+        line-height: 1.4;
+    }
+
+    .navbar {
+        padding: 15px;
+    }
+
+    .footer-logo img {
+        height: 64px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-image {
+        height: 58px; /* Slightly larger but still compact */
+    }
+
+    .logo-subtitle {
+        font-size: 0.78rem;
+        max-width: 120px;
+        line-height: 1.4;
+    }
+
+    .logo a {
+        gap: 8px;
+    }
+
+    .footer-logo img {
+        height: 58px;
+    }
+}
+
+/* CARD FIXES - Better mobile display */
+
+/* Value Cards - Fix mobile layout */
+.value-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 15px;
+}
+
+@media (max-width: 768px) {
+    .value-cards {
+        gap: 15px;
+    }
+
+    .value-card {
+        flex: 1 1 calc(50% - 15px); /* 2 columns on tablets */
+        min-width: 160px;
+        max-width: none;
+        padding: 20px 15px;
+    }
+
+    .value-card i {
+        font-size: 2.2rem;
+    }
+
+    .value-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .value-card p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .value-card {
+        flex: 1 1 100%; /* Full width on small phones */
+        max-width: 100%;
+        padding: 25px 20px;
+    }
+
+    .value-card i {
+        font-size: 2.5rem;
+    }
+
+    .value-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .value-card p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Feature Cards - Fix grid/flex conflict */
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 0 15px;
+}
+
+@media (max-width: 768px) {
+    .features-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+        gap: 20px;
+    }
+
+    .feature-card {
+        padding: 25px 20px;
+    }
+
+    .feature-card i {
+        font-size: 2.2rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.2rem;
+        min-height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-container {
+        grid-template-columns: 1fr; /* Single column on phones */
+        gap: 15px;
+    }
+
+    .feature-card {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+
+    .feature-card i {
+        font-size: 2.5rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Statistics boxes - Better mobile layout */
+@media (max-width: 768px) {
+    .statistics-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns instead of trying to fit 4 */
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .statistic-box {
+        padding: 25px 15px;
+    }
+
+    .statistic-number {
+        font-size: 2.5rem;
+    }
+
+    .statistic-label {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .statistics-container {
+        grid-template-columns: 1fr; /* Single column on small phones */
+        gap: 15px;
+    }
+
+    .statistic-box {
+        padding: 30px 20px;
+    }
+
+    .statistic-number {
+        font-size: 3rem;
+    }
+}
+
+/* Process steps - Better mobile spacing */
+@media (max-width: 768px) {
+    .process-steps {
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .process-step {
+        flex: 1 1 calc(50% - 20px);
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .process-step {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 25px 20px;
+    }
+}
+
+/* General mobile improvements */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Ensure hero/banner text is readable */
+    .hero h1, .page-banner h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero p, .page-banner p {
+        font-size: 1rem;
+    }
+}

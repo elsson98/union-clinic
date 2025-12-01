@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * Sets up all UI components based on current page
  */
 function setupUI() {
-    // Common elements for all pages
-    setupMobileMenu();
+    // Note: Mobile menu setup is handled in includes.js
 
     // Get current page to load page-specific functionality
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -32,91 +31,7 @@ function setupUI() {
     }
 }
 
-/**
- * Set up mobile menu and navigation
- */
-function setupMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function () {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function () {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    }
-
-    // Set active navigation item
-    setActiveNavItem();
-}
-
-/**
- * Set active navigation item based on current page
- */
-function setActiveNavItem() {
-    // Get current page filename or default to index.html
-    const pathname = window.location.pathname;
-    const currentPage = pathname.split('/').pop() || 'index.html';
-
-    // Remove active class from all nav items
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.classList.remove('active');
-    });
-
-    // Set active class based on current page with more specific matching
-    if (currentPage === 'index.html' || currentPage === '') {
-        const homeLink = document.querySelector('.nav-menu a[href="index.html"]');
-        if (homeLink) homeLink.classList.add('active');
-    } else if (currentPage.includes('service')) {
-        const servicesLink = document.querySelector('.nav-menu a[href="services.html"]');
-        if (servicesLink) servicesLink.classList.add('active');
-    } else if (currentPage.includes('about')) {
-        const aboutLink = document.querySelector('.nav-menu a[href="about.html"]');
-        if (aboutLink) aboutLink.classList.add('active');
-    } else if (currentPage.includes('testimonial')) {
-        const testimonialLink = document.querySelector('.nav-menu a[href="testimonials.html"]');
-        if (testimonialLink) testimonialLink.classList.add('active');
-    } else if (currentPage.includes('contact')) {
-        const contactLink = document.querySelector('.nav-menu a[href="contact.html"]');
-        if (contactLink) contactLink.classList.add('active');
-    } else if (currentPage.includes('calculator')) {
-        const calculatorLink = document.querySelector('.nav-menu a[href="calculator.html"]');
-        if (calculatorLink) calculatorLink.classList.add('active');
-    } else if (currentPage.includes('faq')) {
-        const faqLink = document.querySelector('.nav-menu a[href="faq.html"]');
-        if (faqLink) faqLink.classList.add('active');
-    } else {
-        // Try direct match
-        const directMatch = document.querySelector(`.nav-menu a[href="${currentPage}"]`);
-        if (directMatch) directMatch.classList.add('active');
-    }
-
-    // Also check for section IDs in the URL for sub-navigation
-    const hash = window.location.hash;
-    if (hash) {
-        document.querySelectorAll('.dropdown-content a').forEach(link => {
-            if (link.getAttribute('href').includes(hash)) {
-                link.classList.add('active');
-                // Also highlight the parent dropdown
-                const parentDropdown = link.closest('.dropdown');
-                if (parentDropdown) {
-                    const parentLink = parentDropdown.querySelector('a');
-                    if (parentLink) {
-                        parentLink.classList.add('active');
-                    }
-                }
-            }
-        });
-    }
-}
+// Mobile menu and navigation are handled in includes.js
 
 /**
  * Setup all home page specific features
