@@ -23,13 +23,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Ensure favicon is set to our icon for all pages
 function ensureFavicon() {
-    document.querySelectorAll('link[rel="icon"]').forEach(link => link.remove());
+    document.querySelectorAll('link[rel*="icon"]').forEach(link => link.remove());
 
-    const link = document.createElement('link');
-    link.rel = 'icon';
-    link.type = 'image/svg+xml';
-    link.href = 'favicon.svg';
-    document.head.appendChild(link);
+    const icons = [
+        { rel: 'icon', type: 'image/svg+xml', href: 'favicon.svg?v=3' },
+        { rel: 'shortcut icon', type: 'image/svg+xml', href: 'favicon.svg?v=3' },
+        { rel: 'icon', type: 'image/png', sizes: '64x51', href: 'favicon.png?v=3' }
+    ];
+
+    icons.forEach(icon => {
+        const link = document.createElement('link');
+        Object.entries(icon).forEach(([key, value]) => link.setAttribute(key, value));
+        document.head.appendChild(link);
+    });
 }
 
 // Set active navigation item based on current page

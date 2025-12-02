@@ -437,7 +437,7 @@ function saveEstimate() {
         </table>
         <div class="estimate-footer">
             <p><strong>Nota:</strong> Questo preventivo è valido per 30 giorni. I prezzi potrebbero variare in base alla valutazione clinica individuale.</p>
-            <p>Per maggiori informazioni, contattaci al: +355 4 451 4641 o via email: info@unionclinic.al</p>
+            <p>Per maggiori informazioni, contattaci al: +355676751515 o via email: info@unionclinic.al</p>
         </div>
     `;
 
